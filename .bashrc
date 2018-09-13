@@ -12,4 +12,4 @@ tabs 4
 
 # Aliases
 alias vi=vim
-alias config='git --git-dir=/c/Users/mwalt/.cfg/ --work-tree=/c/Users/mwalt'
+alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
