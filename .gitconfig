@@ -1,0 +1,10 @@
+[credential]
+	helper = manager
+
+[alias]
+	alias = "!f() { a=\"$1\"; shift; \
+		git config --global alias.\"$a\" \"$*\"; }; f"
+	tree = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+[user]
+	email = m.walther97@gmail.com
+	name = Markus Walther
