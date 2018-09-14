@@ -1,11 +1,10 @@
 # Start SSH agent if neccessary
-if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-	echo 'Starting SSH agent . . .'
-	eval `ssh-agent`
-	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l > /dev/null || ssh-add
+case "$OSTYPE" in
+	linux*)   source ~/.bashrc_linux ;;
+	msys*)    source ~/.bashrc_win ;;
+	cygwin*)  source ~/.bashrc_win ;;
+	*)        echo "unknown: $OSTYPE" ;;
+esac
 
 # Sane tabs
 tabs 4
