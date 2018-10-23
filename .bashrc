@@ -6,10 +6,17 @@ case "$OSTYPE" in
 	*)        echo "unknown: $OSTYPE" ;;
 esac
 
+# Run emacs server
+runemacs --daemon
+
 # Sane tabs
 tabs 4
+
+# Run emacs in client-server mode by default
+alias emacs='emacsclient -c -n -a runemacs'
 
 # Aliases
 alias vi=vim
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias la='ls -la'
+alias em='emacs'
