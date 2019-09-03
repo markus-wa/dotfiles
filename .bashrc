@@ -20,3 +20,5 @@ alias vi=vim
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias la='ls -la'
 alias em='emacs'
+alias gerp=grep
+alias g='git'
