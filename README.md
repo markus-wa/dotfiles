@@ -54,4 +54,4 @@ This creates a bare clone inside `~/.dotfiles`, backs up any files that would be
 |`amend`|`commit --amend`|
 |`reword`|`commit --amend --no-verify`|
 |`p`|`push`|
-|`nvp`|`push --no-verify`|
+|`pnv`|`push --no-verify`|
