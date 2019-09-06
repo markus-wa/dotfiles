@@ -14,6 +14,11 @@
 	reword = commit --amend --no-verify
 	p = push
 	pnv = push --no-verify
+	praise = blame
+	unstage = reset HEAD --
+	innit = init # git, innit bruv?
+	stat = status
+	pair = "!f() { CO_AUTHOR=$(grep "$1:" ~/.git-authors | cut -f2 -d':'); COMMIT_MSG=$(printf \"Co-authored-by: $CO_AUTHOR\"); git commit -m \"$COMMIT_MSG\" --edit; }; f"
 [user]
 	email = m.walther97@gmail.com
 	name = Markus Walther
@@ -21,3 +26,7 @@
 	autocrlf = input
 [commit]
 	gpgsign = true
+[rebase]
+	autosquash = true
+[mergetool]
+	keepBackup = false
