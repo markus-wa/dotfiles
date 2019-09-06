@@ -22,3 +22,7 @@ alias la='ls -la'
 alias em='emacs'
 alias gerp=grep
 alias g='git'
+
+if [ -f '~/.bashrc.local' ]; then
+	source ~/.basrc.local
+fi
