@@ -23,6 +23,6 @@ alias em='emacs'
 alias gerp=grep
 alias g='git'
 
-if [ -f '~/.bashrc.local' ]; then
-	source ~/.basrc.local
+if [ -f ~/.bashrc_local ]; then
+	source ~/.bashrc_local
 fi
