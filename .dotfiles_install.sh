@@ -1,3 +1,4 @@
+#!/bin/sh
 git clone --bare git@github.com:markus-wa/dotfiles.git $HOME/.dotfiles
 
 function dotfiles {
