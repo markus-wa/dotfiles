@@ -19,6 +19,10 @@
 	innit = init # git, innit bruv?
 	stat = status
 	pair = "!f() { CO_AUTHOR=$(grep "$1:" ~/.git-authors | cut -f2 -d':'); COMMIT_MSG=$(printf \"Co-authored-by: $CO_AUTHOR\"); git commit -m \"$COMMIT_MSG\" --edit; }; f"
+	cherry-diff = "!f() { for ref in `git cherry origin/$1 origin/$2 | grep '^+' | cut -f2 -d' '`; do git show -q $ref; done }; f"
+	cherry-behind = "!f() { git cherry-diff HEAD $1; }; f"
+	cherry-ahead = "!f() { git cherry-diff $1 HEAD; }; f"
+
 [user]
 	email = m.walther97@gmail.com
 	name = Markus Walther
