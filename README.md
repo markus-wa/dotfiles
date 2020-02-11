@@ -55,3 +55,10 @@ This creates a bare clone inside `~/.dotfiles`, backs up any files that would be
 |`reword`|`commit --amend --no-verify`|
 |`p`|`push`|
 |`pnv`|`push --no-verify`|
+|`praise`|`blame`|
+|`unstage`|`reset HEAD -- ...`|
+|`stat`|`status`|
+|`pair`|Checks ~/.git-authors for email addresses and automatically adds `Co-authored-by: [Other Dev <other.dev@example.com>]`|
+|`cherry-diff`|Shows the commit differences between two branches|
+|`cherry-behind`|Shows the missing commits on the current branch compared to another branch|
+|`cherry-ahead`|Shows the missing commits on another branch compared to the current branch|
