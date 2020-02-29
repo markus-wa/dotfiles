@@ -17,3 +17,6 @@ fi;
 
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
+
+systemctl enable --user emacs
+systemctl start --user emacs
