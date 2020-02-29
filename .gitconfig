@@ -28,6 +28,7 @@
 	name = Markus Walther
 [core]
 	autocrlf = input
+	editor = vi
 [commit]
 	gpgsign = true
 [rebase]
