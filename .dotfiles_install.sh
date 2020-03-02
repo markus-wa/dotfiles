@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # install stuff
 sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt update
