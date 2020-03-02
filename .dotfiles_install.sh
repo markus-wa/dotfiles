@@ -1,15 +1,14 @@
 #!/bin/bash
-git clone --bare git@github.com:markus-wa/dotfiles.git $HOME/.dotfiles
-
-function dotfiles {
-   git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
-}
 
 # install stuff
 sudo apt update
 
+# git
+sudo apt install git
+
 # emacs + spacemacs
-sudo apt install emacs26 curl
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt install emacs26
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # oh-my-zsh
@@ -18,6 +17,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # thefuck
 sudo apt install python3-dev python3-pip python3-setuptools
 sudo pip3 install thefuck
+
+git clone --bare git@github.com:markus-wa/dotfiles.git $HOME/.dotfiles
+
+function dotfiles {
+    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+}
 
 # checkout dotfiles
 dotfiles checkout
