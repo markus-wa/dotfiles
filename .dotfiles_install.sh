@@ -4,8 +4,8 @@
 sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt update
 
-# git
-sudo apt install git
+# git + zsh
+sudo apt install git zsh
 
 # emacs + spacemacs
 sudo apt install emacs26
