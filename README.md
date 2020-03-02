@@ -4,7 +4,7 @@ Contains my personal dotfiles for Windows (Git Bash) & Linux.
 
 ## Installing
 
-	wget -q -O - https://raw.githubusercontent.com/markus-wa/dotfiles/master/.dotfiles_install.sh | sh	
+	curl -s https://raw.githubusercontent.com/markus-wa/dotfiles/master/.dotfiles_install.sh | bash	
 
 This creates a bare clone inside `~/.dotfiles`, backs up any files that would be overwritten and checks out all files into the home directory.
 

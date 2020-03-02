@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # install stuff
+sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt update
 
 # git
 sudo apt install git
 
 # emacs + spacemacs
-sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt install emacs26
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
