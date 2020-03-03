@@ -30,15 +30,13 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     clojure
+   '(clojure
      html
      yaml
      rust
      (go :variables
          go-tab-width 4
-         go-use-gometalinter t
-      )
+         go-use-gometalinter t)
      markdown
      vimscript
      ;; ----------------------------------------------------------------
@@ -59,8 +57,7 @@ values."
             shell-default-shell 'eshell)
      spell-checking
      syntax-checking
-     version-control
-     )
+     version-control)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -310,8 +307,7 @@ It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
-  )
+`dotspacemacs/user-config' first.")
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -320,7 +316,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  )
+  (setq writeroom-width 100)
+  (with-eval-after-load "cider"
+    (cider-register-cljs-repl-type 'super-cljs "(do (user/go) (user/cljs-repl))")))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
