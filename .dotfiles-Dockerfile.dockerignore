@@ -1,0 +1,3 @@
+*
+!.dotfiles_install.sh
+!.config/systemd/user/emacs.service
