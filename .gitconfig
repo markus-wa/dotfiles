@@ -22,6 +22,7 @@
 	cherry-diff = "!f() { for ref in `git cherry origin/$1 origin/$2 | grep '^+' | cut -f2 -d' '`; do git show -q $ref; done }; f"
 	cherry-behind = "!f() { git cherry-diff HEAD $1; }; f"
 	cherry-ahead = "!f() { git cherry-diff $1 HEAD; }; f"
+	co = checkout
 
 [user]
 	email = m.walther97@gmail.com
