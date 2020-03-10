@@ -99,8 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="~/bin:$PATH"
-
 RPROMPT='[%*]'
 prompt_context(){}
 
@@ -114,3 +112,4 @@ alias em=emacs
 alias g=git
 alias gerp=grep
 alias vi=emacs
+alias top=htop
