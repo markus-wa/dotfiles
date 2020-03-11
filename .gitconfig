@@ -7,7 +7,7 @@
 	tree = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	fix = "!f() { TARGET=$(git rev-parse "$1"); shift: git commit --fixup=$TARGET $@ && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 	fixup = "!f() { TARGET=$(git rev-parse "$1"); shift: git commit --fixup=$TARGET $@; }; f"
-	c = commit
+	c = commit -m
 	cnv = commit --no-verify
 	amen = commit --amend --no-edit
 	amend = commit --amend
@@ -17,12 +17,16 @@
 	praise = blame
 	unstage = reset HEAD --
 	innit = init # git, innit bruv?
+	st = status
 	stat = status
 	pair = "!f() { CO_AUTHOR=$(grep "$1:" ~/.git-authors | cut -f2 -d':'); COMMIT_MSG=$(printf \"Co-authored-by: $CO_AUTHOR\"); git commit -m \"$COMMIT_MSG\" --edit; }; f"
 	cherry-diff = "!f() { for ref in `git cherry origin/$1 origin/$2 | grep '^+' | cut -f2 -d' '`; do git show -q $ref; done }; f"
 	cherry-behind = "!f() { git cherry-diff HEAD $1; }; f"
 	cherry-ahead = "!f() { git cherry-diff $1 HEAD; }; f"
 	co = checkout
+	a = add
+	rh = reset HEAD
+	d = diff
 
 [user]
 	email = m.walther97@gmail.com
