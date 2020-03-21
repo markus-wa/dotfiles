@@ -107,6 +107,7 @@ eval "$(thefuck --alias)"
 tabs 4
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias dotf=dotfiles
 alias emacs='emacsclient -c -n -a runemacs'
 alias em=emacs
 alias g=git

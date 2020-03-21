@@ -31,6 +31,7 @@ This creates a bare clone inside `~/.dotfiles`, backs up any files that would be
 |-|-|
 |`em`|`emacs`|
 |`emacs`|`emacsclient -c -n -a runemacs`|
+|`dotf`|`git` with dotfiles config|
 |`g`|`git`|
 |`gerp`|`grep` (typing is hard)|
 |`la`|`ls -la`|
