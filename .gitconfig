@@ -5,8 +5,8 @@
 	alias = "!f() { a=\"$1\"; shift; \
 		git config --global alias.\"$a\" \"$*\"; }; f"
 	tree = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	fix = "!f() { TARGET=$(git rev-parse "$1"); shift: git commit --fixup=$TARGET $@ && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
-	fixup = "!f() { TARGET=$(git rev-parse "$1"); shift: git commit --fixup=$TARGET $@; }; f"
+	fix = "!f() { TARGET=$(git rev-parse "$1"); shift; git commit --fixup=$TARGET $@ && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+	fixup = "!f() { TARGET=$(git rev-parse "$1"); shift; git commit --fixup=$TARGET $@; }; f"
 	c = commit -m
 	cnv = commit --no-verify
 	amen = commit --amend --no-edit
@@ -40,3 +40,5 @@
 	autosquash = true
 [mergetool]
 	keepBackup = false
+[merge]
+	tool = meld
