@@ -27,6 +27,9 @@
 	a = add
 	rh = reset HEAD
 	d = diff
+	cob = checkout -b
+	ap = add -p
+	cop = checkout -p
 
 [user]
 	email = m.walther97@gmail.com
