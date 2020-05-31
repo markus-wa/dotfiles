@@ -347,7 +347,7 @@ you should place your code here."
         appt-display-duration 10
         appt-message-warning-time 6
         appt-audible 1)
-  (when (memq window-system '(mac ns x))
+  (when (memq window-system '(mac ns x nil))
     (exec-path-from-shell-initialize))
   (with-eval-after-load "cider"
     (cider-register-cljs-repl-type 'super-cljs "(do (user/go) (user/cljs-repl))"))
