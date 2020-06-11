@@ -8,6 +8,20 @@ Contains my personal dotfiles for Windows (Git Bash) & Linux.
 
 This creates a bare clone inside `~/.dotfiles`, backs up any files that would be overwritten and checks out all files into the home directory.
 
+## Google Calendar Sync
+
+`crontab -e`
+
+```
+*/1 * * * * ~/bin/sync_gcal.sh
+```
+
+`.zshenv_secret`
+
+```
+export GCAL_URL="[[super secret google calendar url (.ics file)]]"
+```
+
 ## Managing the Repository
 
 `.basrc` contains an alias for `git` called `dotfiles` which can be used to commit files in the home directory to the bare repository in `~/.dotfiles`.
