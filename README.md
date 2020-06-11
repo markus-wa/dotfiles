@@ -13,7 +13,7 @@ This creates a bare clone inside `~/.dotfiles`, backs up any files that would be
 `crontab -e`
 
 ```
-*/1 * * * * ~/bin/sync_gcal.sh
+*/5 * * * * ~/bin/sync_gcal.sh
 ```
 
 `.zshenv_secret`
