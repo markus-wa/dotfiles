@@ -114,3 +114,12 @@ alias g=git
 alias gerp=grep
 alias vi=emacs
 alias top=htop
+alias l='lsd -l'
+alias la='lsd -la'
+alias lt='lsd --tree'
+
+function hg {
+    rg $@ ~/.zsh_history
+}
+
+bindkey '^r' history-incremental-search-backward
