@@ -110,6 +110,7 @@ alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias dotf=dotfiles
 alias emacs='emacsclient -c -n -a runemacs'
 alias em=emacs
+alias fd=fdfind
 alias g=git
 alias gerp=grep
 alias vi=emacs
@@ -117,6 +118,7 @@ alias top=htop
 alias l='lsd -l'
 alias la='lsd -la'
 alias lt='lsd --tree'
+alias upgrade='sudo apt update && sudo apt upgrade'
 alias kubectx='kubectl ctx'
 alias kubens='kubectl ns'
 
