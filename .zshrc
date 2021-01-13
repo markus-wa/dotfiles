@@ -117,9 +117,13 @@ alias top=htop
 alias l='lsd -l'
 alias la='lsd -la'
 alias lt='lsd --tree'
+alias kubectx='kubectl ctx'
+alias kubens='kubectl ns'
 
 function hg {
     rg $@ ~/.zsh_history
 }
 
 bindkey '^r' history-incremental-search-backward
+
+setopt HIST_IGNORE_SPACE

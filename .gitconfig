@@ -31,6 +31,9 @@
 	ap = add -p
 	rh = reset HEAD
 	d = diff
+	hub = "!f(){ gh repo view --web; }; f"
+	web = "!f(){ gh repo view --web; }; f"
+	pr = "!f() { gh pr create --fill; }; f"
 
 [user]
 	email = m.walther97@gmail.com
