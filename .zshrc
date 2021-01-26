@@ -129,3 +129,5 @@ function hg {
 bindkey '^r' history-incremental-search-backward
 
 setopt HIST_IGNORE_SPACE
+
+source $HOME/.zshrc_local
