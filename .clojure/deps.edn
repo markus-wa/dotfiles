@@ -27,7 +27,7 @@
 
  :deps
  ;; Clojure standard library
- {org.clojure/clojure {:mvn/version "1.10.1"}}
+ {org.clojure/clojure {:mvn/version "1.10.2"}}
 
  ;; End of: Main dependencies
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -35,6 +35,21 @@
 
  :aliases
  {
+  :repl/custom
+  {:extra-deps
+   {hashp/hashp                   {:mvn/version "0.2.0"}
+    hasht/hasht                   {:mvn/version "0.1.0"}
+    io.aviso/pretty               {:mvn/version "0.1.37"}
+    cider/cider-nrepl             {:mvn/version "0.25.7"}
+    vlaaad/reveal                 {:mvn/version "1.3.193"}
+    com.bhauman/rebel-readline    {:mvn/version "0.1.4"}
+    com.gfredericks/user.clj      {:mvn/version "0.1.0"}
+    nrepl/nrepl                   {:mvn/version "0.8.3"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}}
+   :main-opts ["-m" "nrepl.cmdline"
+               "--middleware" "[vlaaad.reveal.nrepl/middleware,refactor-nrepl.middleware/wrap-refactor,cider.nrepl/cider-middleware]"
+               "-i"
+               "-f" "rebel-readline.main/-main"]}
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; REPL experience

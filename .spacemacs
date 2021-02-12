@@ -383,8 +383,10 @@ you should place your code here."
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
   (add-hook 'after-make-frame-functions 'spacemacs/enable-transparency)
   (setq cider-eldoc-display-context-dependent-info t)
+  (setq cider-repl-buffer-size-limit 100000)
   (add-to-list 'auto-mode-alist '("\\.lssl$" . clojure-mode))
-  (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library"))
+  (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library")
+  (set-variable 'cider-clojure-cli-global-options "-M:repl/custom"))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
