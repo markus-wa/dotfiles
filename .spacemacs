@@ -581,7 +581,14 @@ before packages are loaded."
   (setq cider-repl-buffer-size-limit 100000)
   (add-to-list 'auto-mode-alist '("\\.lssl$" . clojure-mode))
   (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library")
-  (set-variable 'cider-clojure-cli-global-options "-M:repl/custom"))
+  (set-variable 'cider-clojure-cli-global-options "-M:repl/custom")
+
+  (with-eval-after-load 'lsp-mode
+    (dolist (dir '("[/\\\\].cpcache$"
+                   "[/\\\\].lsp$"
+                   "[/\\\\]classes$"
+                   "[/\\\\]target$"))
+      (push dir lsp-file-watch-ignored))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
