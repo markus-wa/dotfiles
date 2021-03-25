@@ -32,7 +32,9 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(lsp
+   '((lsp :variables
+          lsp-lens-enable t
+          lsp-ui-sideline-enable t)
      multiple-cursors
      terraform
      docker
@@ -241,16 +243,9 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '(("Hack"
-                                 :size 13
-                                 :weight normal
-                                 :width normal
-                                 :powerline-scale 1.1)
-                               ("Source Code Pro"
-                                :size 13
-                                :weight normal
-                                :width normal
-                                :powerline-scale 1.1))
+   dotspacemacs-default-font '(("Hack")
+                               ("Source Code Pro"))
+
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
 
