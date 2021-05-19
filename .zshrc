@@ -130,6 +130,7 @@ alias lt='lsd --tree'
 alias upgrade='sudo apt update && sudo apt upgrade'
 alias kubectx='kubectl ctx'
 alias kubens='kubectl ns'
+alias snunzip='snzip -d -t raw'
 
 function hg {
     rg $@ ~/.zsh_history

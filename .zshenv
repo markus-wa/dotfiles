@@ -4,4 +4,3 @@ export BROWSER="firefox"
 export LEIN_USE_BOOTCLASSPATH=no
 
 source $HOME/.zshenv_local
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
