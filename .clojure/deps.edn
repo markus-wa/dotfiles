@@ -27,18 +27,21 @@
 
  :deps
  ;; Clojure standard library
- {org.clojure/clojure {:mvn/version "1.10.2"}}
+ {org.clojure/clojure {:mvn/version "1.10.3"}}
 
  ;; End of: Main dependencies
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
  :aliases
- {
+ {:hashp
+  {:extra-deps
+   {hashp/hashp              {:mvn/version "0.2.0"}}
+    com.gfredericks/user.clj {:mvn/version "0.1.0"}}
+
   :repl/custom
   {:extra-deps
    {hashp/hashp                   {:mvn/version "0.2.0"}
-    hasht/hasht                   {:mvn/version "0.1.0"}
     io.aviso/pretty               {:mvn/version "0.1.37"}
     cider/cider-nrepl             {:mvn/version "0.25.7"}
     vlaaad/reveal                 {:mvn/version "1.3.193"}
