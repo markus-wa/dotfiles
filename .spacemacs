@@ -32,10 +32,16 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((typescript :variables
-                 typescript-fmt-on-save t)
+   '(rust
+     html
+     (typescript :variables
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'prettier)
      (javascript :variables javascript-import-tool 'import-js)
-     go
+     (go :variables
+         go-tab-width 4
+         go-format-before-save t
+         gofmt-command "goimports")
      elixir
      (lsp :variables
           lsp-lens-enable t
@@ -44,7 +50,9 @@ This function should only modify configuration layer settings."
      terraform
      docker
      sql
-     python
+     (python :variables
+             python-backend 'lsp
+             python-lsp-server 'pyright)
      csv
      clojure
      yaml
@@ -206,6 +214,12 @@ It should only modify the values of Spacemacs settings."
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
+
+   ;; Show numbers before the startup list lines. (default t)
+   dotspacemacs-show-startup-list-numbers t
+
+   ;; The minimum delay in seconds between number key presses. (default 0.4)
+   dotspacemacs-startup-buffer-multi-digit-delay 0.4
 
    ;; Default major mode for a new empty buffer. Possible values are mode
    ;; names such as `text-mode'; and `nil' to use Fundamental mode.
@@ -384,6 +398,10 @@ It should only modify the values of Spacemacs settings."
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
 
+   ;; Show the scroll bar while scrolling. The auto hide time can be configured
+   ;; by setting this variable to a number. (default t)
+   dotspacemacs-scroll-bar-while-scrolling t
+
    ;; Control line numbers activation.
    ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
    ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
@@ -490,6 +508,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-use-clean-aindent-mode t
 
+   ;; Accept SPC as y for prompts if non nil. (default nil)
+   dotspacemacs-use-SPC-as-y nil
+
    ;; If non-nil shift your number row to match the entered keyboard layout
    ;; (only in insert state). Currently supported keyboard layouts are:
    ;; `qwerty-us', `qwertz-de' and `querty-ca-fr'.
@@ -593,7 +614,9 @@ before packages are loaded."
                    "[/\\\\].lsp$"
                    "[/\\\\]classes$"
                    "[/\\\\]target$"))
-      (push dir lsp-file-watch-ignored))))
+      (push dir lsp-file-watch-ignored)))
+
+  (setq-default typescript-indent-level 2))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -610,7 +633,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (jedi jedi-core python-environment web-mode typescript-mode import-js grizzl emmet-mode add-node-modules-path helm-gtags godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc ggtags flycheck-golangci-lint dap-mode bui counsel-gtags counsel swiper ivy company-go go-mode mmm-mode markdown-toc lsp-ui lsp-treemacs lsp-origami origami helm-lsp gh-md lsp-mode helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil treemacs cfrs ht pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize all-the-icons spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file multi-line shut-up macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils pkg-info epl elisp-slime-nav editorconfig dumb-jump drag-stuff dired-quick-sort devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup use-package pcre2el hydra lv dotenv-mode diminish bind-map bind-key which-key undo-tree org-plus-contrib nameless hybrid-mode font-lock+ expand-region evil-unimpaired async aggressive-indent ace-window))))
+    (toml-mode ron-mode racer rust-mode flycheck-rust cargo tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode counsel-css company-web web-completion-data jedi jedi-core python-environment web-mode typescript-mode import-js grizzl emmet-mode add-node-modules-path helm-gtags godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc ggtags flycheck-golangci-lint dap-mode bui counsel-gtags counsel swiper ivy company-go go-mode mmm-mode markdown-toc lsp-ui lsp-treemacs lsp-origami origami helm-lsp gh-md lsp-mode helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil treemacs cfrs ht pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize all-the-icons spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file multi-line shut-up macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils pkg-info epl elisp-slime-nav editorconfig dumb-jump drag-stuff dired-quick-sort devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup use-package pcre2el hydra lv dotenv-mode diminish bind-map bind-key which-key undo-tree org-plus-contrib nameless hybrid-mode font-lock+ expand-region evil-unimpaired async aggressive-indent ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
