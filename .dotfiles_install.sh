@@ -2,22 +2,20 @@
 
 set -e
 
-# install stuff
-sudo add-apt-repository ppa:kelleyk/emacs
-sudo apt update
-
 # git + zsh
-sudo apt install -y git zsh curl
+sudo pacman -S git zsh curl emacs alacritty zellij fortune-mod lolcat cowsay fd ripgrep bat
 
 # emacs + spacemacs
-sudo apt install -y emacs26
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+if [ ! -d "$HOME/.emacs.d" ]; then
+  git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # thefuck
-sudo apt install -y python3-dev python3-pip python3-setuptools
+sudo pacman -S python3 python-pip
 sudo pip3 install thefuck
 
 git clone --bare https://github.com/markus-wa/dotfiles.git $HOME/.dotfiles
@@ -44,4 +42,3 @@ dotfiles config status.showUntrackedFiles no
 
 # start emacs service
 systemctl enable --user emacs
-systemctl start --user emacs

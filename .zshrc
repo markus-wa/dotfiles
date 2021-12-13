@@ -1,4 +1,4 @@
-fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1) | lolcat
+fortune | cowsay -f $(ls /usr/share/cows | shuf -n1) | lolcat
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -119,7 +119,6 @@ alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias dotf=dotfiles
 alias emacs='emacsclient -c -n -a runemacs'
 alias em=emacs
-alias fd=fdfind
 alias g=git
 alias gerp=grep
 alias vi=emacs
@@ -131,12 +130,16 @@ alias upgrade='sudo apt update && sudo apt upgrade'
 alias kubectx='kubectl ctx'
 alias kubens='kubectl ns'
 alias snunzip='snzip -d -t raw'
+alias ssh='TERM=xterm-256color ssh' # ssh+alacritty = bad times
+alias k=kubectl
 
-function hg {
-    rg $@ ~/.zsh_history
-}
+
+hg() { rg $@ ~/.zsh_history }
+qr() { curl qrcode.show/$1 }
 
 bindkey '^r' history-incremental-search-backward
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
 
 setopt HIST_IGNORE_SPACE
 
