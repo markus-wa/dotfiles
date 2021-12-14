@@ -3,7 +3,11 @@
 set -e
 
 # git + zsh
-sudo pacman -S git zsh curl emacs alacritty zellij fortune-mod lolcat cowsay fd ripgrep bat
+sudo pacman -S git zsh curl emacs alacritty zellij cowfortune fortune-mod lolcat cowsay fd ripgrep bat git-lfs
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+cargo install difftastic
 
 # emacs + spacemacs
 if [ ! -d "$HOME/.emacs.d" ]; then
