@@ -1,6 +1,6 @@
 if [ "$ZELLIJ" = "" ] && [ "$TERM" = "alacritty" ] ; then zellij --layout-path "$HOME/.zellij-layout.yaml"; fi
 
-fortune | cowsay -f $(ls /usr/share/cows | shuf -n1) | lolcat
+fortune | cowsay -f $(find /usr/share/cows -type f -name "*.cow" | shuf -n1) | lolcat
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
