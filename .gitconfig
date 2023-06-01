@@ -30,7 +30,9 @@
 	a = add
 	ap = add -p
 	rh = reset HEAD
-	d = diff
+	d = difftool
+	dft = difftool
+	difft = difftool
 	hub = "!f(){ gh repo view --web; }; f"
 	web = "!f(){ gh repo view --web; }; f"
 	pr = "!f() { gh pr create --fill; }; f"

@@ -24,6 +24,3 @@ tabs:
     parts:
       - direction: Horizontal
       - direction: Horizontal
-        parts:
-          - direction: Horizontal
-          - direction: Vertical
