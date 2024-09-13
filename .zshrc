@@ -1,6 +1,6 @@
 if [ "$ZELLIJ" = "" ] && [ "$TERM" = "alacritty" ] ; then zellij; fi
 
-fortune | cowsay -f $(find /usr/share/cows -type f -name "*.cow" | shuf -n1) | lolcat
+fortune | cowsay -f $(find /usr/share/cowsay/cows -type f -name "*.cow" | shuf -n1) | lolcat
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -156,3 +156,5 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

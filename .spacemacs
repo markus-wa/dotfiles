@@ -32,15 +32,29 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(systemd
+   '(nginx
+     lua
+     protobuf
+     ruby
+     vimscript
+     systemd
+     cmake
      php
      windows-scripts
      rust
      html
      (typescript :variables
                  typescript-fmt-on-save t
-                 typescript-fmt-tool 'prettier)
-     (javascript :variables javascript-import-tool 'import-js)
+                 typescript-fmt-tool 'prettier
+                 typescript-backend 'lsp)
+     (javascript :variables
+                 js2-basic-offset 2
+                 js-indent-level 2
+                 javascript-import-tool 'import-js
+                 javascript-fmt-on-save t
+                 javascript-fmt-tool 'prettier
+                 javascript-backend 'lsp)
+     prettier
      (go :variables
          go-tab-width 4
          go-format-before-save t
@@ -175,7 +189,7 @@ It should only modify the values of Spacemacs settings."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update 't
 
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
@@ -567,29 +581,31 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (set-default-coding-systems 'utf-8)
   (setq writeroom-width 100)
-;  (require 'org-caldav)
-;  (setq org-caldav-oauth2-client-id ""
-;        org-caldav-oauth2-client-secret ""
-;        org-caldav-url 'google
-;        org-caldav-calendar-id "m.walther97@gmail.com"
-;        org-caldav-inbox "~/org/calendar-m.walther97.org"
-;        org-icalendar-timezone "Europe/Bristol")
-;  (org-caldav-sync)
-  (setq org-agenda-files '("~/org/appointments.org"
-                           "~/org/gcal.org"))
+  (setq org-agenda-files '("~/org/gcal_work.org"
+                           "~/org/gcal_private.org"))
   (org-agenda-to-appt)
   (run-with-timer 0 60 'org-agenda-to-appt)
   (setq appt-display-interval 2
         appt-display-duration 10
         appt-message-warning-time 6
         appt-audible 1)
+  (setq exec-path-from-shell-arguments nil)
   (when (memq window-system '(mac ns x nil))
     (exec-path-from-shell-initialize))
   (spacemacs|do-after-display-system-init
    (spacemacs/load-spacemacs-env))
   (with-eval-after-load "cider"
-    (cider-register-cljs-repl-type 'super-cljs "(do (user/go) (user/cljs-repl))"))
+    (cider-register-cljs-repl-type 'super-cljs "(do (user/go) (user/cljs-repl))")
+    (cider-register-cljs-repl-type 'nbb "(+ 1 2 3")
+
+    (defun mm/cider-connected-hook ()
+      (when (eq 'nbb cider-cljs-repl-type)
+        (setq-local cider-show-error-buffer nil)
+        (cider-set-repl-type 'cljs)))
+
+    (add-hook 'cider-connected-hook #'mm/cider-connected-hook))
   (with-eval-after-load "treemacs"
     (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
   (add-hook 'shell-mode-hook 'shell-histoy-file-hook)
@@ -608,7 +624,7 @@ before packages are loaded."
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
   (add-hook 'after-make-frame-functions 'spacemacs/enable-transparency)
   (setq cider-eldoc-display-context-dependent-info t)
-  (setq cider-repl-buffer-size-limit 100000)
+  (setq cider-repl-buffer-size-limit 20000)
   (add-to-list 'auto-mode-alist '("\\.lssl$" . clojure-mode))
   (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library")
   (set-variable 'cider-clojure-cli-global-options "-M:repl/custom")
@@ -635,8 +651,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
+ '(org-agenda-files '("/home/mark/org/gcal_work.org"))
  '(package-selected-packages
-   '(systemd phpunit phpcbf php-extras php-auto-yasnippets geben php-runtime php-mode powershell bmx-mode toml-mode ron-mode racer rust-mode flycheck-rust cargo tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode counsel-css company-web web-completion-data jedi jedi-core python-environment web-mode typescript-mode import-js grizzl emmet-mode add-node-modules-path helm-gtags godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc ggtags flycheck-golangci-lint dap-mode bui counsel-gtags counsel swiper ivy company-go go-mode mmm-mode markdown-toc lsp-ui lsp-treemacs lsp-origami origami helm-lsp gh-md lsp-mode helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil treemacs cfrs ht pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize all-the-icons spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file multi-line shut-up macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils pkg-info epl elisp-slime-nav editorconfig dumb-jump drag-stuff dired-quick-sort devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup use-package pcre2el hydra lv dotenv-mode diminish bind-map bind-key which-key undo-tree org-plus-contrib nameless hybrid-mode font-lock+ expand-region evil-unimpaired async aggressive-indent ace-window))
+   '(nginx-mode company-lua lua-mode protobuf-mode seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv rake minitest enh-ruby-mode chruby bundler inf-ruby vimrc-mode dactyl-mode helm-ctest cmake-mode org crontab-mode systemd phpunit phpcbf php-extras php-auto-yasnippets geben php-runtime php-mode powershell bmx-mode toml-mode ron-mode racer rust-mode flycheck-rust cargo tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode counsel-css company-web web-completion-data jedi jedi-core python-environment web-mode typescript-mode import-js grizzl emmet-mode add-node-modules-path helm-gtags godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc ggtags flycheck-golangci-lint dap-mode bui counsel-gtags counsel swiper ivy company-go go-mode mmm-mode markdown-toc lsp-ui lsp-treemacs lsp-origami origami helm-lsp gh-md lsp-mode helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil treemacs cfrs ht pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize all-the-icons spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file multi-line shut-up macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse evil-visualstar evil-visual-mark-mode evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils pkg-info epl elisp-slime-nav editorconfig dumb-jump drag-stuff dired-quick-sort devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup use-package pcre2el hydra lv dotenv-mode diminish bind-map bind-key which-key undo-tree org-plus-contrib nameless hybrid-mode font-lock+ expand-region evil-unimpaired async aggressive-indent ace-window))
  '(safe-local-variable-values
    '((setq flycheck-golangci-lint-config "../.golangci.yml")
      (typescript-backend . tide)
@@ -649,5 +666,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
 )
